@@ -9,9 +9,9 @@ body {
 /* TODO: Create CSS for your Twitter Mockup */
 
 .list1-class {
-  margin-top: 50px;
-  background-color:white;
-  border: solid 5px blue;
+  /* margin-top: 55px; */
+  background-color:green;
+  border: solid 5px greenyellow;
 
 }
 
@@ -19,7 +19,7 @@ body {
 .wide {
   width: 100%;
   height: 600px;
-  border: solid 1px green;
+  border: solid 5px green;
   /* justify-content: flex-start; */
 }
 
@@ -44,4 +44,9 @@ hr {
   margin-right: auto;
   border-style:solid;
   border-width: 1.5px;
+}
+
+.content-wrapper {
+  margin-top: 33px;
+  border: solid 5px pink;
 }
