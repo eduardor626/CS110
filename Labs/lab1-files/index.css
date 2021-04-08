@@ -72,5 +72,23 @@ hr {
 }
 
 .navbar-brand {
-  margin-right: 50%;
+  margin-right: 42%;
+
+}
+
+
+.tweet {
+  background-color: #00acee; /* Green */
+  border: none;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 2px 1px;
+  cursor: pointer;
+  border-radius: 70%;
+  width: 100px;
+  
 }
