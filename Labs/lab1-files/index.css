@@ -92,3 +92,24 @@ hr {
   width: 100px;
   
 }
+
+.left-child-top {
+  width: 100%;
+  height: 100px;
+  background-color: blue;
+  border: solid 1px orange;
+}
+
+.left-child-middle {
+  width: 100%;
+  height: 100px;
+  background-color: blue;
+  border: solid 1px orange;
+}
+
+.left-child-bottom {
+  width: 100%;
+  height: 100px;
+  background-color: blue;
+  border: solid 1px orange;
+}
