@@ -8,33 +8,47 @@ body {
 
 /* TODO: Create CSS for your Twitter Mockup */
 
-.list1-class {
-  /* margin-top: 55px; */
+/* .list1-class {
   background-color:green;
   border: solid 5px greenyellow;
 
-}
+} */
 
+.content-wrapper {
+  max-width: 1190px; 
+  margin: 56px auto;
+  margin-top: 23px;
+  border: solid 5px pink;
+}
 
 .wide {
   width: 100%;
   height: 600px;
   border: solid 5px green;
-  /* justify-content: flex-start; */
-}
-
-.child {
-  width: 30%;
-  height: 100%;
-  background-color: orange;
-  border: solid 2px red;
-} 
-
-.flex {
-  display: flex;
+  justify-content: flex-start;
+  display:flex;
   justify-content: space-around;
-  gap: 12px;
 }
+
+.content-left {
+  width: 290px;
+  background-color: black;
+  border:solid 2px purple;
+}
+
+.content-center {
+  width: 290px;
+  background-color: gray;
+  border:solid 2px purple;
+}
+
+.content-right {
+  width: 290px;
+  background-color: white;
+  border:solid 2px purple;
+}
+
+
 
 hr {
   display: block;
@@ -46,7 +60,17 @@ hr {
   border-width: 1.5px;
 }
 
-.content-wrapper {
-  margin-top: 33px;
-  border: solid 5px pink;
+
+
+.navbar {
+  position:fixed;
+  top:0;
+  right:0;
+  left:0;
+  height:46px;
+  z-index: 100;
+}
+
+.navbar-brand {
+  margin-right: 50%;
 }
