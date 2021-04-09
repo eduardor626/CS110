@@ -35,8 +35,8 @@ body {
 }
 
 .content-center {
-  width: 450px;
-  height: 600px;
+  width: 500px;
+  height: 800px;
   background-color: gray;
   border:solid 2px purple;
   float:left;
@@ -139,25 +139,37 @@ hr {
 .RemyText {
   /* text-align:left; */
   margin-left: 40%;
-  height:60px;
+  height:80px;
   font-weight: bold;
   /* text-decoration: underline; */
   border:solid 4px red;
   text-align: justify;
 }
 
-#Text {
-  margin-left: 5px;
-  color:black;
-  border:solid 1px red;
+/* .Remy {
+  font-weight: bold;
+ 
+} */
 
+.Text {
+  margin-left: 5px;
+  margin-top: 5px;
+  width:50px;
+  color:black;
+  height:25px;
+  border:solid 1px red;
+  text-align: left;
+  font-size: medium;
+  font-weight: bold;
 }
 
-#At {
-  margin-left: 5px;
-  color:gray;
+.At {
+  /* margin-left: 5px; */
+  /* margin-top: 5px; */
+  height: 25px;
+  color:#bbc8c9;
   border:solid 1px blue;
-
+  font-size: medium;
 
 }
 
@@ -178,7 +190,62 @@ td {
   
   
 }
-
-.grid-container {
-  display: grid;
+.grid-item{
+  margin-left: 5px;
+  margin-right:5px;
+  
+  /* margin-top: 1px; */
+  width:486px;
+  height: 120px;
+  background-color: white;
+  border: solid 1px gray;
+  /* margin-bottom: 10px; */
+  display: inline-flex;
+  
+  
 }
+
+.grid-it {
+  margin-left: 5px; 
+  margin-bottom:2px;
+  margin-top:5px;
+  border: solid 2px #00acee;
+  width: 70px;
+  height:70px;
+  border-radius: 50%;
+
+}
+
+.Name-Date {
+  width: 200px;
+  height:25px;
+  border:solid 1px green;
+  margin-top: 5px;
+  text-align:left;
+  color:#bbc8c9;
+  font-size: medium;
+}
+
+.tweet-message {
+  border: solid 1px limegreen;
+  width: 335px;
+  height:80px;
+  margin-top: 2px;
+  font-size: medium;
+  font-weight: normal;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.rat-pic-mini {
+  width: 40px;
+  height:40px;
+  border-radius: 50%;
+  margin-left:2px;
+  margin-top:2px;
+  border:solid 2px red;
+  z-index: 101;
+
+}
+
+
+
