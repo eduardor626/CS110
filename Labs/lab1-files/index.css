@@ -29,15 +29,15 @@ body {
 
 .content-left {
   width: 290px;
-  background-color: gray;
-  border:solid 2px purple;
+  background-color: #e6ecf0;
+  /* border:solid 2px purple; */
  
 }
 
 .content-center {
   width: 500px;
   height: 800px;
-  background-color: gray;
+  background-color: #e6ecf0;
   border:solid 2px purple;
   float:left;
 
@@ -45,8 +45,9 @@ body {
 
 .content-right {
   width: 290px;
-  background-color: gray;
-  border:solid 2px purple;
+  height:500px;
+  background-color: #e6ecf0;
+  /* border:solid 2px purple; */
 }
 
 
@@ -107,12 +108,12 @@ hr {
   position: relative;
   width:80%;
   height:70px;
-  border:solid 2px green;
+  /* border:solid 2px green; */
 }
 
 .left-child-middle {
   background-color: white;
-  border: solid 1px orange;
+  /* border: solid 1px orange; */
   width: 100%;
   height: 100px;
   
@@ -142,7 +143,7 @@ hr {
   height:80px;
   font-weight: bold;
   /* text-decoration: underline; */
-  border:solid 4px red;
+  /* border:solid 4px red; */
   text-align: justify;
 }
 
@@ -157,7 +158,7 @@ hr {
   width:50px;
   color:black;
   height:25px;
-  border:solid 1px red;
+  /* border:solid 1px red; */
   text-align: left;
   font-size: medium;
   font-weight: bold;
@@ -168,9 +169,14 @@ hr {
   /* margin-top: 5px; */
   height: 25px;
   color:#bbc8c9;
-  border:solid 1px blue;
+  /* border:solid 1px blue; */
   font-size: medium;
 
+}
+
+.at{
+  margin-left: 10px;
+  color: #bbc8c9;
 }
 
 .tabler {
@@ -191,18 +197,18 @@ td {
   
 }
 .grid-item{
-  margin-left: 5px;
-  margin-right:5px;
-  
+  /* margin-left: 5px; */
+  /* margin-right:5px; */
+
   /* margin-top: 1px; */
-  width:486px;
-  height: 120px;
+  width: 500px;
+  /* max-height: 120px; */
+  min-height: 100px;
   background-color: white;
   border: solid 1px gray;
   /* margin-bottom: 10px; */
   display: inline-flex;
-  
-  
+  overflow:visible;  
 }
 
 .grid-it {
@@ -219,19 +225,30 @@ td {
 .Name-Date {
   width: 200px;
   height:25px;
-  border:solid 1px green;
+  /* border:solid 1px green; */
   margin-top: 5px;
   text-align:left;
   color:#bbc8c9;
   font-size: medium;
 }
 
+.Name-At {
+  /* flex-direction: column; */
+  height: 25px;
+  margin-left:2px;
+  background-color: white;
+  /* border:solid 2px lightsalmon; */
+}
+
 .tweet-message {
   border: solid 1px limegreen;
   width: 335px;
-  height:80px;
+  /* height:50px; */
+  height: 30px;
+  /* max-height: 100; */
+
   margin-top: 2px;
-  font-size: medium;
+  font-size: small;
   font-weight: normal;
   font-family: 'Courier New', Courier, monospace;
 }
@@ -242,10 +259,52 @@ td {
   border-radius: 50%;
   margin-left:2px;
   margin-top:2px;
-  border:solid 2px red;
+  /* border:solid 2px red; */
   z-index: 101;
 
 }
 
+.right-grid-item{  
+  width:290px;
+  height:200px;
+  background-color: white;
+  /* border: solid 2px red; */
+}
+
+.right-rec {
+  width:auto;
+  height:80px;
+  display:flex;
+  background-color: white;
+}
+
+.photo_rec {
+  border-radius: 50%;
+  margin:5px;
+}
 
 
+.follow {
+  background-color: white; /* Green */
+  border: solid 1px #00acee;
+  color: #00acee;
+  text-align: center;
+  font-size: 15px;
+  border-radius: 20px;
+  margin-left: 5px;
+  margin-right:60%;
+  height: 30px;
+
+}
+
+.TextArea {
+  background-color:white;
+  /* border:solid 1px lime; */
+  width: 200px;
+  display:flex;
+  flex-direction: column;
+}
+
+@media all and (max-width: 1000px) {
+  .content-right { display: none; }
+}
