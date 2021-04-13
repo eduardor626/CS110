@@ -13,7 +13,7 @@ body {
   max-height: fit-content;
   margin: 56px auto;
   margin-top: 23px;
-  border: solid 5px pink;
+  /* border: solid 5px pink; */
   justify-content: flex-start;
   display:flex;
   justify-content: space-around;
@@ -69,16 +69,14 @@ hr {
   background-color: #00acee; 
   border: none;
   color: white;
-  padding: 5px;
+  padding: 1px;
   text-align: center;
-  text-decoration: none;
   display: inline-block;
   font-size: 20px;
-  margin: 2px 1px;
+  margin: 1px;
   cursor: pointer;
-  border-radius: 70%;
+  border-radius: 90px;
   width: 100px;
-  
 }
 
 .left-child-top {
