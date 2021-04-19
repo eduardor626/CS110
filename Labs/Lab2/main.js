@@ -26,7 +26,6 @@ function handleCellClick(clickedCellEvent) {
             
             if(wonGame(clickedCellEvent)){
                 updateWins(whoseTurn);
-                alert("Won Bitches!!!");
                 gameOver=true;
                 return;
             }
@@ -68,6 +67,8 @@ function nextTurn(){
 
 function markCell(number){
     gameBoard[number-1] = whoseTurn;
+    document.getElementById(number).getElementsByClassName("xo")[0].style.backgroundColor = "#eb3452";
+
 }
 
 function resetGame(){
@@ -90,15 +91,25 @@ function newGame(){
 }
 
 function wonGame(number){
+    //dont need to check 
+    if(moves < 5){
+        return false;
+    }
+
     if(checkHorizontal(number)){
         return true;
     }
-    return false;
+    else if(checkVertical(number)){
+        return true;
+    }
+    else if(checkDiagonal(number)){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 function checkHorizontal(number){
-    // let item = document.getElementById(number).getElementsByClassName("xo")[0].innerHTML;
-    // alert("in check horiz = "+item);
     number = parseInt(number);
     switch(number)
     {
@@ -118,5 +129,63 @@ function checkHorizontal(number){
         case 7:
             return (document.getElementById(number+1).getElementsByClassName("xo")[0].innerHTML == whoseTurn) 
             && (document.getElementById(number+2).getElementsByClassName("xo")[0].innerHTML == whoseTurn) ; 
+    }
+}
+
+// This will Check the Vertical rows of the board 1, 2, 3 then 4, 5, 6 and last 7, 8, 9
+function checkVertical(number){
+    number = parseInt(number);
+    switch(number)
+    {
+        case 1:
+        case 2: 
+        case 3: 
+            return (document.getElementById(number+3).getElementsByClassName("xo")[0].innerHTML == whoseTurn) 
+            && (document.getElementById(number+6).getElementsByClassName("xo")[0].innerHTML == whoseTurn) ; 
+            break;
+        case 4:
+        case 5:
+        case 6:
+            return (document.getElementById(number-3).getElementsByClassName("xo")[0].innerHTML == whoseTurn) 
+            && (document.getElementById(number+3).getElementsByClassName("xo")[0].innerHTML == whoseTurn) ; 
+            break;
+        case 7:
+        case 8: 
+        case 9:
+            return (document.getElementById(number-3).getElementsByClassName("xo")[0].innerHTML == whoseTurn) 
+            && (document.getElementById(number-6).getElementsByClassName("xo")[0].innerHTML == whoseTurn) ; 
+            break;
+    }
+}
+
+// This will check only diagonal rows of the board 
+function checkDiagonal(number){
+    number = parseInt(number);
+    switch(number)
+    {
+        case 1:
+            return (document.getElementById(number+4).getElementsByClassName("xo")[0].innerHTML == whoseTurn) 
+            && (document.getElementById(number+8).getElementsByClassName("xo")[0].innerHTML == whoseTurn) ; 
+            break;
+        case 5:
+            return (document.getElementById(number-4).getElementsByClassName("xo")[0].innerHTML == whoseTurn) 
+            && (document.getElementById(number+4).getElementsByClassName("xo")[0].innerHTML == whoseTurn) ; 
+            break;
+        case 9: 
+            return (document.getElementById(number-4).getElementsByClassName("xo")[0].innerHTML == whoseTurn) 
+            && (document.getElementById(number-8).getElementsByClassName("xo")[0].innerHTML == whoseTurn) ; 
+            break;
+        case 3:
+            return (document.getElementById(number+2).getElementsByClassName("xo")[0].innerHTML == whoseTurn) 
+            && (document.getElementById(number+4).getElementsByClassName("xo")[0].innerHTML == whoseTurn) ; 
+            break;
+        case 5:
+            return (document.getElementById(number-2).getElementsByClassName("xo")[0].innerHTML == whoseTurn) 
+            && (document.getElementById(number+2).getElementsByClassName("xo")[0].innerHTML == whoseTurn) ; 
+            break;
+        case 7:
+            return (document.getElementById(number-2).getElementsByClassName("xo")[0].innerHTML == whoseTurn) 
+            && (document.getElementById(number-4).getElementsByClassName("xo")[0].innerHTML == whoseTurn) ; 
+            break;
     }
 }
