@@ -27,13 +27,21 @@ function handleCellClick(clickedCellEvent) {
             if(wonGame(clickedCellEvent)){
                 updateWins(whoseTurn);
                 gameOver=true;
+                alert("Won!")
                 return;
             }
             nextTurn();
 
         }
     }
+    if(gameOver != true){
+        aiMove();
+        nextTurn();
+    }
+
 }
+
+
 
 function checkValid(clickedCellEvent){
     return document.getElementById(clickedCellEvent).getElementsByClassName("xo")[0].innerHTML.length == 0;
@@ -69,6 +77,25 @@ function markCell(number){
     gameBoard[number-1] = whoseTurn;
     document.getElementById(number).getElementsByClassName("xo")[0].style.backgroundColor = "#eb3452";
 
+}
+
+// This keeps track of the Ai move after the player does there move.
+function aiMove(){
+    var randNum = 0;
+    randNum = Math.floor((Math.random() * 9) + 1); // random number from 1-9
+    randNum = parseInt(randNum);
+    while(!document.getElementById(randNum).getElementsByClassName("xo")[0].innerHTML.length == 0){  // When its not valid
+        randNum = Math.floor((Math.random() * 9) + 1);
+    } 
+    markCell(randNum); 
+    document.getElementById(randNum).getElementsByClassName("xo")[0].innerHTML = whoseTurn;
+
+    if(wonGame(randNum)){
+        updateWins(whoseTurn);
+        alert("AI Wins")
+        gameOver=true;
+        return;
+    }
 }
 
 function resetGame(){
