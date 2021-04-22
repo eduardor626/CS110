@@ -18,8 +18,7 @@ document.getElementsByClassName("display_player")[0].innerHTML = whoseTurn;
 // when a cell is clicked 
 function handleCellClick(clickedCellEvent) {
     if(gameOver != true){
-        alert("clicked cell = "+clickedCellEvent);
-        // alert(document.getElementById(clickedCellEvent).innerHTML)
+
         if(checkValid(clickedCellEvent)){
             markCell(clickedCellEvent);
             document.getElementById(clickedCellEvent).getElementsByClassName("xo")[0].innerHTML = whoseTurn;
@@ -27,7 +26,7 @@ function handleCellClick(clickedCellEvent) {
             if(wonGame(clickedCellEvent)){
                 updateWins(whoseTurn);
                 gameOver=true;
-                alert("Won!")
+                alert("Winner is "+whoseTurn)
                 return;
             }
             nextTurn();
@@ -37,6 +36,10 @@ function handleCellClick(clickedCellEvent) {
     if(gameOver != true){
         aiMove();
         nextTurn();
+    }else{
+        updateWins(whoseTurn);
+        alert("Winner is "+whoseTurn);
+        return;
     }
 
 }
@@ -54,6 +57,7 @@ function updateWins(player){
         oWins+=1;
     }
     document.getElementsByClassName("display_score")[0].innerHTML = "X="+xWins+"\tO="+oWins;
+    // document.getElementById(clickedCellEvent).getElementsByClassName("xo")[0].style.backgroundColor = "#eb3452";
 }
 
 //handle the next move and elements that have to change
@@ -94,6 +98,7 @@ function aiMove(){
         updateWins(whoseTurn);
         alert("AI Wins")
         gameOver=true;
+
         return;
     }
 }
