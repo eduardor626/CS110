@@ -84,8 +84,7 @@
       <div class="grid-item">
         <img class="grid-it" src="images/ratatouille.jpg">
         <label class="NameText">Remy
-          <div class="tweet-message">Here is my first tweet rel. Lets keep typing and see if we get an error on the new line that we create. Keep going lksjdaf adkl sodj dd. keep typing and gonig feast alit ajhfdlash askdfhj asdfh jjj lets keep going and see if this grows more and more</div>
-
+          
           <div class="options">
             <img src="images/heart-icon.png" alt="heartlike" class="choices">
             <img src="images/comment-icon.png" alt="commentlike" class="choices">
@@ -210,6 +209,23 @@
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
     integrity="sha256-qM7QTJSlvtPSxVRjVWNM2OfTAz/3k5ovHOKmKXuYMO4=" crossorigin="anonymous"></script>
+  
+  <!-- 
+  <script>
+    let x = new XMLHttpRequest();
+    x.open('GET', "http://twitterfeedserverrails-env.eba-xmqy8ybh.us-east-1.elasticbeanstalk.com/feed/random?q=weather", true);
+    x.send();
+    x.addEventListener("readychange", request, false);
+    x.onreadystatechange = request;
+
+    function request(e) {
+      if (x.readyState == 4 && x.status == 200) {
+        let response = JSON.parse(x.responseText);
+        document.querySelector("#ipText").innerHTML = response.ip;
+      }
+    }
+  </script>
+ -->
 </body>
 
 </html>
