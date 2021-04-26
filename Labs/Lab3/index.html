@@ -39,6 +39,7 @@
         </li>
       </ul>
       <a class="navbar-brand"><img src="images/twitter-logo.png" width="34" height="37" /></a>
+     <!--<input id="searchBar" type="search" placeholder="Search in tweets"> --> 
       <span>
         <button class="tweet"><b>Tweet</b></button>
       </span>
@@ -210,22 +211,23 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
     integrity="sha256-qM7QTJSlvtPSxVRjVWNM2OfTAz/3k5ovHOKmKXuYMO4=" crossorigin="anonymous"></script>
   
-  <!-- 
+   
   <script>
     let x = new XMLHttpRequest();
-    x.open('GET', "http://twitterfeedserverrails-env.eba-xmqy8ybh.us-east-1.elasticbeanstalk.com/feed/random?q=weather", true);
+    x.open('GET', "http://ec2-54-219-224-129.us-west-1.compute.amazonaws.com:2000/feed/random?q=weather", true);
     x.send();
     x.addEventListener("readychange", request, false);
+    var request;
     x.onreadystatechange = request;
-
-    function request(e) {
+    
+    window.onload = function request(e) {
       if (x.readyState == 4 && x.status == 200) {
         let response = JSON.parse(x.responseText);
         document.querySelector("#ipText").innerHTML = response.ip;
       }
     }
   </script>
- -->
+ 
 </body>
 
 </html>
