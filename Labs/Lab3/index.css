@@ -298,7 +298,9 @@ td {
   border:solid 1px yellowgreen;
   width:95%;
   height: 25px;
+  margin-top:5px;
   margin-left: 5px;
+  font-weight: bold;
 }
 
 .otherBorder {
