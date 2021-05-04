@@ -142,14 +142,15 @@ hr {
 .NameText {
   margin-left: 5px;
   margin-top: 5px;
-  width:50px;
+  width:auto;
   color:black;
-  height:auto;
+  height: 30px;
   text-align: left;
   font-size: small;
   font-weight: bold; 
   display:flex;
-  flex-direction: column;
+  flex-direction: row;
+  border:solid 2px red;
 }
 
 .At {
@@ -184,7 +185,8 @@ td {
   min-height: 100px;
   background-color: white;
   border-bottom: solid 1px  #e6ecf0;
-  display: flex;
+  display:flex;
+  flex-direction: row;
   overflow:visible;  
 }
 
@@ -203,12 +205,13 @@ td {
 }
 
 .Name-Date {
-  width: 200px;
+  width: auto;
   height:25px;
   margin-top: 5px;
   text-align:left;
   color:gray;
-  font-size: small; 
+  font-size: medium; 
+  flex-wrap: wrap;
 }
 
 .Name-At {
@@ -218,16 +221,16 @@ td {
 }
 
 .tweet-message {
-  /* border: solid 1px limegreen; */
-  width: 335px;
+  border: solid 1px red;
+  width: 98%;
+  margin-left: 5px;
   height: auto; 
-  margin:2px;
+  /* margin:2px; */
   font-size: 14px;
-  font-weight: normal;
+ 
 }
 
 .options {
-
   display:inline;
   justify-content:space-evenly;
   flex-direction: row;
@@ -289,6 +292,22 @@ td {
   width: 200px;
   display:flex;
   flex-direction: column;
+}
+
+.user-info {
+  border:solid 1px yellowgreen;
+  width:95%;
+  height: 25px;
+  margin-left: 5px;
+  ;
+}
+
+.otherBorder {
+  display:flex;
+  flex-direction: column;
+  border:solid 1px green;
+  width: 100%;
+
 }
 
 @media all and (max-width: 1000px) {
