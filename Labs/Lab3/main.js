@@ -64,16 +64,21 @@ function createTweet(tweets){
     dateLabel.classList.add("Name-Date")
     tweetMessage.classList.add("tweet-message");
 
+    //append the image to grid item
     gridItem.appendChild(tweetImage);
+    
+    //create the user and dates
     userLabel.appendChild(user);
     dateLabel.appendChild(tweetUserInfo);
-    tweetMessage.appendChild(tweetText);
     userLabel.appendChild(dateLabel);
+
+    //create tweet message
+    tweetMessage.appendChild(tweetText);
+
+    //add these to the right border
     otherBorder.appendChild(userLabel);
-
     otherBorder.appendChild(tweetMessage);
-    gridItem.appendChild(otherBorder);
-    
-    tweetContainer.prepend(gridItem);
 
+    gridItem.appendChild(otherBorder);    
+    tweetContainer.prepend(gridItem);
 }
