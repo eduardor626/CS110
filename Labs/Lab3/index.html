@@ -2,6 +2,18 @@
 <html lang="en">
 
 <head>
+  <header>
+    <section>
+
+    </section>
+  </header>
+  <script>
+    const header = document.querySelector('header');
+    const section = document.querySelector('section');
+
+
+
+    </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Bootstrap CSS -->
@@ -9,7 +21,10 @@
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <!-- your CSS can be added here -->
   <link rel="stylesheet" type="text/css" href="index.css">
-  <title>Mock Twitter</title>
+  <script src="main.js"></script>                                             
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
+  <title onload="getTweets()">Mock Twitter</title>
 </head>
 
 <body>
@@ -39,7 +54,6 @@
         </li>
       </ul>
       <a class="navbar-brand"><img src="images/twitter-logo.png" width="34" height="37" /></a>
-     <!--<input id="searchBar" type="search" placeholder="Search in tweets"> --> 
       <span>
         <button class="tweet"><b>Tweet</b></button>
       </span>
@@ -81,11 +95,12 @@
       </div>
     </div>
 
-    <div class="content-center">
+    <div class="content-center" onload="getTweets()">
       <div class="grid-item">
         <img class="grid-it" src="images/ratatouille.jpg">
         <label class="NameText">Remy
-          
+          <div class="tweet-message">Here is my first tweet rel. Lets keep typing and see if we get an error on the new line that we create. Keep going lksjdaf adkl sodj dd. keep typing and gonig feast alit ajhfdlash askdfhj asdfh jjj lets keep going and see if this grows more and more</div>
+
           <div class="options">
             <img src="images/heart-icon.png" alt="heartlike" class="choices">
             <img src="images/comment-icon.png" alt="commentlike" class="choices">
@@ -210,24 +225,6 @@
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
     integrity="sha256-qM7QTJSlvtPSxVRjVWNM2OfTAz/3k5ovHOKmKXuYMO4=" crossorigin="anonymous"></script>
-  
-   
-  <script>
-    let x = new XMLHttpRequest();
-    x.open('GET', "http://ec2-54-219-224-129.us-west-1.compute.amazonaws.com:2000/feed/random?q=weather", true);
-    x.send();
-    x.addEventListener("readychange", request, false);
-    var request;
-    x.onreadystatechange = request;
-    
-    window.onload = function request(e) {
-      if (x.readyState == 4 && x.status == 200) {
-        let response = JSON.parse(x.responseText);
-        document.querySelector("#ipText").innerHTML = response.ip;
-      }
-    }
-  </script>
- 
 </body>
 
 </html>
