@@ -18,6 +18,9 @@ function getTweets() {
     if(paused == false){
         fetch(url)
         .then(res => res.json()).then(data => {
+            console.log(data);
+            data.statuses.sort((a, b) => (a.user.creation_date > b.user.creation_date) ? 1 : -1);
+            console.log(data);
             displayTweets(data);
          })
         .catch(err => {
@@ -28,6 +31,7 @@ function getTweets() {
     return;
 }
 
+
 function displayTweets(data){
     for (i = 0; i < data.statuses.length; i++) {
         createTweet(data.statuses[i],i+1);
@@ -37,11 +41,12 @@ function displayTweets(data){
 
 function pauseStream(){
     if(paused == false){
-        console.log(document.getElementsByClassName('pause'));
         paused = true;
+        updateButton();
+
     }else if(paused == true){
-        console.log(document.getElementsByClassName('pause'));
         paused = false;
+        updateButton();
     }
 }
 
@@ -69,9 +74,6 @@ function createTweet(tweets,count){
     //creating the elements thru JS
     var tweetContainer = document.getElementById('tweet-container');
 
-    // var searchContainer = document.createElement('div');
-    // var pauseButton = document.createElement('button');
-
     var gridItem = document.createElement("div");
     var tweetImage = document.createElement("img");
     tweetImage.src = tweets.user.profile_image_url;
@@ -81,8 +83,6 @@ function createTweet(tweets,count){
     var tweetMessage = document.createElement("p");
 
     //specifying which classes these elements belong to
-    // searchContainer.classList.add("search-bar-container");
-    // pauseButton.classList.add("pause");
 
     gridItem.classList.add("grid-item");
     tweetImage.classList.add("grid-it");
@@ -91,10 +91,6 @@ function createTweet(tweets,count){
     dateLabel.classList.add("Name-Date")
     tweetMessage.classList.add("tweet-message");
 
-    //append the pause button to the search container
-    // searchContainer.appendChild(pauseButton);
-
-    
     //append the image to grid item
     gridItem.appendChild(tweetImage);
     
@@ -117,19 +113,28 @@ function createTweet(tweets,count){
 function updateButton(){
     var elem = document.getElementById("search-container");
     elem.parentNode.removeChild(elem);
-    console.log(elem.parentNode)
 
     var TweetContainer = document.getElementById('tweet-container');
-
     var searchContainer = document.createElement('div');
     var pauseButton = document.createElement('button');
 
     searchContainer.classList.add("search-bar-container");
     searchContainer.id = 'search-container';
     pauseButton.classList.add("pause");
-    pauseButton.innerHTML = "pause";
+
+    // document.getElementById('pause-btn').innerHTML='pause';
+
+    pauseButton.innerHTML=checkPause();
     pauseButton.onclick = pauseStream;
 
     searchContainer.appendChild(pauseButton);    
     TweetContainer.prepend(searchContainer);
+}
+
+function checkPause(){
+    if(paused === false){
+        return 'play';
+    }else{
+        return 'pause';
+    }
 }

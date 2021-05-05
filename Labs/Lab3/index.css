@@ -325,9 +325,11 @@ td {
   color: white;
   text-align: center;
   font-size: 12px;
-  margin: 1px;
-  margin-bottom: 5px;
+  padding:1px;
   width: 60px;
+  margin-left: 5px;
+  border-radius: 70px;
+  font-weight:bold;
 }
 
 
