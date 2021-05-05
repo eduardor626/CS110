@@ -120,10 +120,7 @@ function updateButton(){
     console.log(elem.parentNode)
 
     var TweetContainer = document.getElementById('tweet-container');
-    // TweetContainer.removeChild(TweetContainer.firstChild);
-    console.log("Removed search bar...");
 
-    console.log("tweet container first child = "+TweetContainer.firstChild);
     var searchContainer = document.createElement('div');
     var pauseButton = document.createElement('button');
 
