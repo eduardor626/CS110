@@ -7,7 +7,7 @@ var tweetSet = new Set()
 var doThisEachTime = window.setInterval(getTweets, 10000)
 
 var paused = false;
-
+let searchString = "" // here we use a global variable
 
 
 // specify to get the 10 tweets from the server
@@ -114,3 +114,8 @@ function updateButton(){
     tweetContainer.prepend(searchContainer);
 }
 
+const handleSearch = event => {
+    searchString = event.target.value.trim().toLowerCase() 
+    // you may want to update the displayed HTML here too
+}
+document.getElementById("searchBar").addEventListener("input", handleSearch)
