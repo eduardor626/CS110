@@ -6,28 +6,43 @@ var tweetSet = new Set()
 // every 10 seconds (we need to check if pause clicked though)
 var doThisEachTime = window.setInterval(getTweets, 10000)
 
+var paused = false;
+
 
 
 // specify to get the 10 tweets from the server
 function getTweets() {
-    fetch(url)
+    if(paused == false){
+        fetch(url)
         .then(res => res.json()).then(data => {
             displayTweets(data);
+            checkCount();
         })
         .catch(err => {
-            // error catching
             console.log(err);
         })
-        return;
+    }
+    
+    return;
 }
 
 function displayTweets(data){
     for (i = 0; i < data.statuses.length; i++) {
-        createTweet(data.statuses[i]);
+        createTweet(data.statuses[i],i+1);
     }
 }
 
-function createTweet(tweets){
+function pauseStream(){
+    if(paused == false){
+        console.log(document.getElementsByClassName('pause'));
+        paused = true;
+    }else if(paused == true){
+        console.log(document.getElementsByClassName('pause'));
+        paused = false;
+    }
+}
+
+function createTweet(tweets,count){
     if(tweetSet.has(tweets.id)){
         console.log("Repeated Tweet");
         return;
@@ -46,8 +61,13 @@ function createTweet(tweets){
     var user = document.createTextNode(userName); 
     var tweetText = document.createTextNode(tweets.text);
 
+
+
     //creating the elements thru JS
     var tweetContainer = document.getElementById('tweet-container');
+    var searchContainer = document.createElement('div');
+    var pauseButton = document.createElement('button');
+
     var gridItem = document.createElement("div");
     var tweetImage = document.createElement("img");
     tweetImage.src = tweets.user.profile_image_url;
@@ -57,6 +77,9 @@ function createTweet(tweets){
     var tweetMessage = document.createElement("p");
 
     //specifying which classes these elements belong to
+    searchContainer.classList.add("search-bar-container");
+    pauseButton.classList.add("pause");
+
     gridItem.classList.add("grid-item");
     tweetImage.classList.add("grid-it");
     otherBorder.classList.add("otherBorder");
@@ -64,6 +87,10 @@ function createTweet(tweets){
     dateLabel.classList.add("Name-Date")
     tweetMessage.classList.add("tweet-message");
 
+    //append the pause button to the search container
+    searchContainer.appendChild(pauseButton);
+
+    
     //append the image to grid item
     gridItem.appendChild(tweetImage);
     
@@ -80,5 +107,9 @@ function createTweet(tweets){
     otherBorder.appendChild(tweetMessage);
 
     gridItem.appendChild(otherBorder);    
-    tweetContainer.prepend(gridItem);
+    tweetContainer.prepend(gridItem);    
+}
+
+function updateButton(){
+    tweetContainer.prepend(searchContainer);
 }
