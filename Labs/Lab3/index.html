@@ -2,18 +2,6 @@
 <html lang="en">
 
 <head>
-  <header>
-    <section>
-
-    </section>
-  </header>
-  <script>
-    const header = document.querySelector('header');
-    const section = document.querySelector('section');
-
-
-
-    </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Bootstrap CSS -->
@@ -23,8 +11,9 @@
   <link rel="stylesheet" type="text/css" href="index.css">
   <script src="main.js"></script>                                             
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   
+
   <title onload="getTweets()">Mock Twitter</title>
+  
 </head>
 
 <body>
@@ -95,80 +84,20 @@
       </div>
     </div>
 
-    <div class="content-center" onload="getTweets()">
-      <div class="grid-item">
-        <img class="grid-it" src="images/ratatouille.jpg">
-        <label class="NameText">Remy
-          <div class="tweet-message">Here is my first tweet rel. Lets keep typing and see if we get an error on the new line that we create. Keep going lksjdaf adkl sodj dd. keep typing and gonig feast alit ajhfdlash askdfhj asdfh jjj lets keep going and see if this grows more and more</div>
 
-          <div class="options">
-            <img src="images/heart-icon.png" alt="heartlike" class="choices">
-            <img src="images/comment-icon.png" alt="commentlike" class="choices">
-            <img src="images/repost-icon.png" alt="commentlike" class="choices">
-          </div>
-          
-        </label>
-        <label class="Name-Date">@Remy Nov 19</label><br>
-
+    <div class="content-center" id="tweet-container">
+      <div class="search-bar-container" id="search-container">
+          <button class="pause" onclick="pauseStream()">Pause Stream</button>
       </div>
 
-      <div class="grid-item">
+      <div class="grid-item" >
         <img class="grid-it" src="images/ratatouille.jpg">
-        <label class="NameText">Remy
-          <div class="tweet-message">Discipline is choosing what you want most over what you want now.Keep on grinding boys.</div>
-          <div class="options">
-            <img src="images/heart-icon.png" alt="heartlike" class="choices">
-            <img src="images/comment-icon.png" alt="commentlike" class="choices">
-            <img src="images/repost-icon.png" alt="commentlike" class="choices">
-          </div>
-        </label>
-        <label class="Name-Date">@Remy Nov 20</label><br>
+        <div class="otherBorder">
+           <p class="user-info">Remy <span class="Name-Date">@remy Nov 19</span></p>
+           <p class="tweet-message">Here is my first tweet rel. Lets keep typing and see if we get an error on the new line that we create. Keep going lksjdaf adkl sodj dd. keep typing and gonig feast alit ajhfdlash askdfhj asdfh jjj lets keep going and see if this grows more and more</p>
+        </div>
       </div>
 
-      <div class="grid-item">
-        <img class="grid-it" src="images/ratatouille.jpg">
-        <label class="NameText">Remy
-          <div class="tweet-message">I'm Full Stack now?</div>
-
-          <div class="options">
-            <img src="images/heart-icon.png" alt="heartlike" class="choices">
-            <img src="images/comment-icon.png" alt="commentlike" class="choices">
-            <img src="images/repost-icon.png" alt="commentlike" class="choices">
-          </div>
-
-        </label>
-        <label class="Name-Date">@Remy Nov 29</label><br>
-      </div>
-
-      <div class="grid-item">
-        <img class="grid-it" src="images/ratatouille.jpg">
-        <label class="NameText">Remy
-          <div class="tweet-message">Almost there!</div>
-
-          <div class="options">
-            <img src="images/heart-icon.png" alt="heartlike" class="choices">
-            <img src="images/comment-icon.png" alt="commentlike" class="choices">
-            <img src="images/repost-icon.png" alt="commentlike" class="choices">
-          </div>
-
-        </label>
-        <label class="Name-Date">@Remy Nov 30</label><br>
-      </div>
-
-      <div class="grid-item">
-        <img class="grid-it" src="images/ratatouille.jpg">
-        <label class="NameText">Remy
-          <div class="tweet-message">“Every action you take is a vote for the type of person you wish to become. No single instance will transform your beliefs, but as the votes build up, so does the evidence of your new identity.”</div>
-
-          <div class="options">
-            <img src="images/heart-icon.png" alt="heartlike" class="choices">
-            <img src="images/comment-icon.png" alt="commentlike" class="choices">
-            <img src="images/repost-icon.png" alt="commentlike" class="choices">
-          </div>
-
-        </label>
-        <label class="Name-Date">@Remy Jan 20</label><br>
-      </div>
     </div>
 
     <div class="content-right">
