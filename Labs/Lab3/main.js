@@ -8,13 +8,21 @@ var doThisEachTime = window.setInterval(getTweets, 10000)
 
 var paused = false;
 
+let searchString = "" // here we use a global variable
 
 
 
+
+function loadSearch(){
+    var el = document.getElementById('searchBar');
+    if(el){
+        el.addEventListener("input", handleSearch);
+    }
+}
 
 // specify to get the 10 tweets from the server
 function getTweets() {
-
+    loadSearch();
     if(paused == false){
         fetch(url)
         .then(res => res.json()).then(data => {
@@ -138,3 +146,9 @@ function checkPause(){
         return 'pause';
     }
 }
+
+const handleSearch = event => {
+    searchString = event.target.value.trim().toLowerCase();
+    console.log(searchString);
+}
+
