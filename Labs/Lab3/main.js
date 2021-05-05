@@ -1,5 +1,4 @@
 // specify a url, in this case our web server
-
 const url = "http://ec2-54-219-224-129.us-west-1.compute.amazonaws.com:2000/feed/random?q=weather"
 
 var tweetSet = new Set()
@@ -7,10 +6,10 @@ var tweetSet = new Set()
 var doThisEachTime = window.setInterval(getTweets, 10000)
 
 var paused = false;
+let searchString = "";// here we use a global variable
 
-let searchString = "" // here we use a global variable
-
-
+var tweetDictionary = [];
+var countTweets = 0;
 
 
 function loadSearch(){
@@ -26,24 +25,33 @@ function getTweets() {
     if(paused == false){
         fetch(url)
         .then(res => res.json()).then(data => {
-            console.log(data);
-            data.statuses.sort((a, b) => (a.user.creation_date > b.user.creation_date) ? 1 : -1);
-            console.log(data);
             displayTweets(data);
          })
         .catch(err => {
             console.log(err);
         })
     }
-    
     return;
 }
 
 
 function displayTweets(data){
     for (i = 0; i < data.statuses.length; i++) {
-        createTweet(data.statuses[i],i+1);
+        createTweet(data.statuses[i]);
     }
+    
+    tweetDictionary.sort(function(a,b){
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(a.date_posted) - new Date(b.date_posted);
+    });    
+      
+    console.log("after sort");
+
+    for (let i = 0; i < tweetDictionary.length; i++) {
+        outputTweet(tweetDictionary[i]);
+    }
+
     updateButton();
 }
 
@@ -58,21 +66,16 @@ function pauseStream(){
     }
 }
 
-function createTweet(tweets,count){
-    if(tweetSet.has(tweets.id)){
-        console.log("Repeated Tweet");
-        return;
-    }else{
-        tweetSet.add(tweets.id);
-    }
-
-    //handle the creation of the tweet on the JS container
-    
-    var tweetDate = tweets.user.created_at;
+function outputTweet(tweets){    
+    var tweetDate = tweets.date_posted;
     tweetDate = tweetDate.split(' ');
+
     var formatTweetDate = tweetDate[1]+" "+tweetDate[2]+ " "+tweetDate[5];
-    var userName = tweets.user.name;
-    var userInformation = " @"+tweets.user.screen_name+" "+formatTweetDate;
+    var userName = tweets.name;
+    if(userName.length > 17){
+        userName = userName.substring(0,16);
+    }
+    var userInformation = " @"+tweets.screen_name+" "+formatTweetDate;
     
     var tweetUserInfo = document.createTextNode(userInformation); 
     var user = document.createTextNode(userName); 
@@ -84,7 +87,7 @@ function createTweet(tweets,count){
 
     var gridItem = document.createElement("div");
     var tweetImage = document.createElement("img");
-    tweetImage.src = tweets.user.profile_image_url;
+    tweetImage.src = tweets.profile_pic;
     var otherBorder = document.createElement("div");
     var userLabel = document.createElement("p");
     var dateLabel = document.createElement("span") 
@@ -116,6 +119,25 @@ function createTweet(tweets,count){
 
     gridItem.appendChild(otherBorder);
     tweetContainer.prepend(gridItem);
+}
+
+function createTweet(tweets){
+    if(tweetSet.has(tweets.id)){
+        console.log("Repeated Tweet");
+        return;
+    }else{
+        tweetSet.add(tweets.id);
+        tweetDictionary.push({
+        "_id": tweets.id,  
+        "text": tweets.text,
+        "name": tweets.user.name,
+        "screen_name": tweets.user.screen_name,
+        "profile_pic": tweets.user.profile_image_url_https,
+        "date_posted": tweets.user.created_at,
+        });        
+        countTweets = countTweets + 1;
+    }
+
 }
 
 function updateButton(){
@@ -150,5 +172,6 @@ function checkPause(){
 const handleSearch = event => {
     searchString = event.target.value.trim().toLowerCase();
     console.log(searchString);
+    
 }
 
