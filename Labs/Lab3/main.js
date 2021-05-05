@@ -10,14 +10,16 @@ var paused = false;
 
 
 
+
+
 // specify to get the 10 tweets from the server
 function getTweets() {
+
     if(paused == false){
         fetch(url)
         .then(res => res.json()).then(data => {
             displayTweets(data);
-            checkCount();
-        })
+         })
         .catch(err => {
             console.log(err);
         })
@@ -30,6 +32,7 @@ function displayTweets(data){
     for (i = 0; i < data.statuses.length; i++) {
         createTweet(data.statuses[i],i+1);
     }
+    updateButton();
 }
 
 function pauseStream(){
@@ -51,6 +54,7 @@ function createTweet(tweets,count){
     }
 
     //handle the creation of the tweet on the JS container
+    
     var tweetDate = tweets.user.created_at;
     tweetDate = tweetDate.split(' ');
     var formatTweetDate = tweetDate[1]+" "+tweetDate[2]+ " "+tweetDate[5];
@@ -62,11 +66,11 @@ function createTweet(tweets,count){
     var tweetText = document.createTextNode(tweets.text);
 
 
-
     //creating the elements thru JS
     var tweetContainer = document.getElementById('tweet-container');
-    var searchContainer = document.createElement('div');
-    var pauseButton = document.createElement('button');
+
+    // var searchContainer = document.createElement('div');
+    // var pauseButton = document.createElement('button');
 
     var gridItem = document.createElement("div");
     var tweetImage = document.createElement("img");
@@ -77,8 +81,8 @@ function createTweet(tweets,count){
     var tweetMessage = document.createElement("p");
 
     //specifying which classes these elements belong to
-    searchContainer.classList.add("search-bar-container");
-    pauseButton.classList.add("pause");
+    // searchContainer.classList.add("search-bar-container");
+    // pauseButton.classList.add("pause");
 
     gridItem.classList.add("grid-item");
     tweetImage.classList.add("grid-it");
@@ -88,7 +92,7 @@ function createTweet(tweets,count){
     tweetMessage.classList.add("tweet-message");
 
     //append the pause button to the search container
-    searchContainer.appendChild(pauseButton);
+    // searchContainer.appendChild(pauseButton);
 
     
     //append the image to grid item
@@ -106,10 +110,29 @@ function createTweet(tweets,count){
     otherBorder.appendChild(userLabel);
     otherBorder.appendChild(tweetMessage);
 
-    gridItem.appendChild(otherBorder);    
-    tweetContainer.prepend(gridItem);    
+    gridItem.appendChild(otherBorder);
+    tweetContainer.prepend(gridItem);
 }
 
 function updateButton(){
-    tweetContainer.prepend(searchContainer);
+    var elem = document.getElementById("search-container");
+    elem.parentNode.removeChild(elem);
+    console.log(elem.parentNode)
+
+    var TweetContainer = document.getElementById('tweet-container');
+    // TweetContainer.removeChild(TweetContainer.firstChild);
+    console.log("Removed search bar...");
+
+    console.log("tweet container first child = "+TweetContainer.firstChild);
+    var searchContainer = document.createElement('div');
+    var pauseButton = document.createElement('button');
+
+    searchContainer.classList.add("search-bar-container");
+    searchContainer.id = 'search-container';
+    pauseButton.classList.add("pause");
+    pauseButton.innerHTML = "pause";
+    pauseButton.onclick = pauseStream;
+
+    searchContainer.appendChild(pauseButton);    
+    TweetContainer.prepend(searchContainer);
 }
