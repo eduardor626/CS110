@@ -7,17 +7,30 @@ var tweetSet = new Set()
 var doThisEachTime = window.setInterval(getTweets, 10000)
 
 var paused = false;
+
 let searchString = "" // here we use a global variable
 
 
+
+
+function loadSearch(){
+    var el = document.getElementById('searchBar');
+    if(el){
+        el.addEventListener("input", handleSearch);
+    }
+}
+
 // specify to get the 10 tweets from the server
 function getTweets() {
+    loadSearch();
     if(paused == false){
         fetch(url)
         .then(res => res.json()).then(data => {
+            console.log(data);
+            data.statuses.sort((a, b) => (a.user.creation_date > b.user.creation_date) ? 1 : -1);
+            console.log(data);
             displayTweets(data);
-            checkCount();
-        })
+         })
         .catch(err => {
             console.log(err);
         })
@@ -26,19 +39,22 @@ function getTweets() {
     return;
 }
 
+
 function displayTweets(data){
     for (i = 0; i < data.statuses.length; i++) {
         createTweet(data.statuses[i],i+1);
     }
+    updateButton();
 }
 
 function pauseStream(){
     if(paused == false){
-        console.log(document.getElementsByClassName('pause'));
         paused = true;
+        updateButton();
+
     }else if(paused == true){
-        console.log(document.getElementsByClassName('pause'));
         paused = false;
+        updateButton();
     }
 }
 
@@ -51,6 +67,7 @@ function createTweet(tweets,count){
     }
 
     //handle the creation of the tweet on the JS container
+    
     var tweetDate = tweets.user.created_at;
     tweetDate = tweetDate.split(' ');
     var formatTweetDate = tweetDate[1]+" "+tweetDate[2]+ " "+tweetDate[5];
@@ -62,11 +79,8 @@ function createTweet(tweets,count){
     var tweetText = document.createTextNode(tweets.text);
 
 
-
     //creating the elements thru JS
     var tweetContainer = document.getElementById('tweet-container');
-    var searchContainer = document.createElement('div');
-    var pauseButton = document.createElement('button');
 
     var gridItem = document.createElement("div");
     var tweetImage = document.createElement("img");
@@ -77,8 +91,6 @@ function createTweet(tweets,count){
     var tweetMessage = document.createElement("p");
 
     //specifying which classes these elements belong to
-    searchContainer.classList.add("search-bar-container");
-    pauseButton.classList.add("pause");
 
     gridItem.classList.add("grid-item");
     tweetImage.classList.add("grid-it");
@@ -87,10 +99,6 @@ function createTweet(tweets,count){
     dateLabel.classList.add("Name-Date")
     tweetMessage.classList.add("tweet-message");
 
-    //append the pause button to the search container
-    searchContainer.appendChild(pauseButton);
-
-    
     //append the image to grid item
     gridItem.appendChild(tweetImage);
     
@@ -106,16 +114,41 @@ function createTweet(tweets,count){
     otherBorder.appendChild(userLabel);
     otherBorder.appendChild(tweetMessage);
 
-    gridItem.appendChild(otherBorder);    
-    tweetContainer.prepend(gridItem);    
+    gridItem.appendChild(otherBorder);
+    tweetContainer.prepend(gridItem);
 }
 
 function updateButton(){
-    tweetContainer.prepend(searchContainer);
+    var elem = document.getElementById("search-container");
+    elem.parentNode.removeChild(elem);
+
+    var TweetContainer = document.getElementById('tweet-container');
+    var searchContainer = document.createElement('div');
+    var pauseButton = document.createElement('button');
+
+    searchContainer.classList.add("search-bar-container");
+    searchContainer.id = 'search-container';
+    pauseButton.classList.add("pause");
+
+    // document.getElementById('pause-btn').innerHTML='pause';
+
+    pauseButton.innerHTML=checkPause();
+    pauseButton.onclick = pauseStream;
+
+    searchContainer.appendChild(pauseButton);    
+    TweetContainer.prepend(searchContainer);
+}
+
+function checkPause(){
+    if(paused === false){
+        return 'play';
+    }else{
+        return 'pause';
+    }
 }
 
 const handleSearch = event => {
-    searchString = event.target.value.trim().toLowerCase() 
-    // you may want to update the displayed HTML here too
+    searchString = event.target.value.trim().toLowerCase();
+    console.log(searchString);
 }
-document.getElementById("searchBar").addEventListener("input", handleSearch)
+
