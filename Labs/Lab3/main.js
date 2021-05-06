@@ -3,7 +3,7 @@ const url = "http://ec2-54-219-224-129.us-west-1.compute.amazonaws.com:2000/feed
 
 var tweetSet = new Set()
 // every 10 seconds (we need to check if pause clicked though)
-var doThisEachTime = window.setInterval(getTweets, 10000)
+var doThisEachTime = window.setInterval(getTweets, 8000)
 
 var paused = false;
 let searchString = "";// here we use a global variable
@@ -46,8 +46,7 @@ function displayTweets(data){
         return new Date(a.date_posted) - new Date(b.date_posted);
     });    
       
-    console.log("after sort");
-
+    
     for (let i = 0; i < tweetDictionary.length; i++) {
         outputTweet(tweetDictionary[i]);
     }
@@ -142,7 +141,9 @@ function createTweet(tweets){
 
 function updateButton(){
     var elem = document.getElementById("search-container");
-    elem.parentNode.removeChild(elem);
+    if(elem){
+        elem.parentNode.removeChild(elem);
+    }
 
     var TweetContainer = document.getElementById('tweet-container');
     var searchContainer = document.createElement('div');
@@ -171,7 +172,18 @@ function checkPause(){
 
 const handleSearch = event => {
     searchString = event.target.value.trim().toLowerCase();
-    console.log(searchString);
-    
+    var tweetContainer = document.getElementById("tweet-container");
+
+    while (tweetContainer.firstChild) {
+        tweetContainer.removeChild(tweetContainer.firstChild);
+    }
+
+    for(let i = 0; i < tweetDictionary.length; i++){
+        let temp = tweetDictionary[i].text.toLowerCase();
+        if(temp.includes(searchString)){
+            outputTweet(tweetDictionary[i]); 
+        }
+    }
+    updateButton();
 }
 
