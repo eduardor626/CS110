@@ -164,9 +164,9 @@ function updateButton(){
 
 function checkPause(){
     if(paused === false){
-        return 'play';
-    }else{
         return 'pause';
+    }else{
+        return 'resume';
     }
 }
 

@@ -229,6 +229,7 @@ td {
   height: auto; 
   /* margin:2px; */
   font-size: 14px;
+  margin-top: -17px;
 }
 
 .options {
