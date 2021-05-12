@@ -1,2 +1,2 @@
-NodeJS/node_modules/*
-ReactLab/my-app/public/*
+node_modules/
+my-app/public/
