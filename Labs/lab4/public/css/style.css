@@ -1,1 +1,105 @@
+<<<<<<< HEAD
 /* TODO: style each page */
+=======
+.header {
+    width: auto;
+    border: solid 1px blue;
+    text-align: center;
+    font-size: larger;
+}
+
+.top-container {
+    width: auto;
+    border: solid 1px green;
+    text-align: center;
+    height: 50px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+:root {
+    --dark-color-a: #3281a8;
+    --dark-color-b: #66c0ed;
+    --light-color: #e6e9ff;
+}
+
+.form-wrapper {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    background: var(--light-color);
+    margin: 20px;
+    border: solid 2px pink;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/*
+join page
+*/
+
+.btn {
+    cursor: pointer;
+    padding: 5px 15px;
+    background: var(--light-color);
+    color: var(--dark-color-a);
+    border: 0;
+    font-size: 17px;
+}
+
+.signup-container {
+    max-width: 500px;
+    margin: 80px auto;
+    color: #fff;
+}
+
+.signup-header {
+    text-align: center;
+    padding: 20px;
+    background: var(--dark-color-a);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.signup-main {
+    padding: 30px 40px;
+    background: var(--dark-color-b);
+}
+
+.signup-main p {
+    margin-bottom: 20px;
+}
+
+.signup-main .form-control {
+    margin-bottom: 20px;
+}
+
+.signup-main label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.signup-main input[type='text'] {
+    font-size: 16px;
+    padding: 5px;
+    height: 40px;
+    width: 100%;
+}
+
+.signup-main select {
+    font-size: 16px;
+    padding: 5px;
+    height: 40px;
+    width: 100%;
+}
+
+.signup-main .btn {
+    margin-top: 20px;
+    width: 100%;
+}
+>>>>>>> 2c3074d94bbc06e836cd1a0ef31df4437dc1ac6b

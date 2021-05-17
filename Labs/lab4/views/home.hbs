@@ -1,2 +1,33 @@
-<h1> Home </h1>
-<p>This is the {{ title }} page</p>
+
+<div class="header">
+    <h1> Home </h1>
+</div>
+
+
+<div class="top-container">
+    <p>This is the Home page</p>
+</div>
+
+<div class="form-wrapper">
+    <div class="signup-container">
+        <header class="signup-header">
+            <h1> Chat App </h1>
+        </header>
+        <main class="signup-main">
+            <form action="eduardo">
+                <div class="form-control">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" placeholder="Enter username..." required />
+                </div>
+                <div class="form-control">
+                    <label for="room">Room</label>
+                    <select name="room" id="room">
+                        <option>Existing Chatroom:A</option>
+                        <option>Existing Chatroom:B</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Join Chat</button>
+            </form>
+        </main>
+    </div>
+</div>
