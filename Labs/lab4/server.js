@@ -35,7 +35,14 @@ app.get('/:roomName', roomHandler.getRoom);
 // respond to /roomName
 app.post('/roomName', (req, res) => {
     // res.redirect() function redirects to the URL derived from the specified path,
-    res.redirect(req.body.createroom);
+    console.log(req.body.createroom + "<---");
+    if (!req.body.createroom) {
+        console.log("its empty");
+        res.redirect(req.body.room);
+    } else {
+        res.redirect(req.body.createroom);
+    }
+
 });
 
 
