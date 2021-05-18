@@ -32,9 +32,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', homeHandler.getHome);
 app.get('/:roomName', roomHandler.getRoom);
 
+// respond to /roomName
 app.post('/roomName', (req, res) => {
-    res.redirect(req.body.createroom)
+    // res.redirect() function redirects to the URL derived from the specified path,
+    res.redirect(req.body.createroom);
 });
+
+
 
 // NOTE: This is the sample server.js code we provided, feel free to change the structures
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
