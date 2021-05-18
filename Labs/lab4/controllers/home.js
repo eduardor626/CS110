@@ -10,10 +10,11 @@ function getHome(request, response) {
 
     //the first param is the .hbs we are accessing or rendering
     //the second is the elements i believe
+    console.log("Home got a hit");
     response.render('home', { title: 'home' });
 
 }
-
+//exports function 
 module.exports = {
     getHome
 };

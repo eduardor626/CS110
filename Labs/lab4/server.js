@@ -23,7 +23,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 // set up stylesheets route
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 // TODO: Add server side code
@@ -32,6 +32,9 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', homeHandler.getHome);
 app.get('/:roomName', roomHandler.getRoom);
 
-// NOTE: This is the sample server.js code we provided, feel free to change the structures
+app.post('/roomName', (req, res) => {
+    res.redirect(req.body.createroom)
+});
 
+// NOTE: This is the sample server.js code we provided, feel free to change the structures
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
