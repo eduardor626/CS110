@@ -1,5 +1,8 @@
 // import dependencies
 const express = require('express');
+const mongoose = require('mongoose');
+const config = require('config');
+const User = require('./models/User');
 const cookieParser = require('cookie-parser');
 const hbs = require('express-handlebars');
 const path = require('path');
@@ -10,6 +13,22 @@ const roomHandler = require('./controllers/room.js');
 
 const app = express();
 const port = 8080;
+const db = config.get('mongoURI');
+
+mongoose
+    .connect(db, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false, useUnifiedTopology: true})
+    .then(() => console.log('MongodDB connected...'))
+    .catch(err => console.log(err));
+
+const newUser = new User({
+    name: 'UCR student 1',
+})
+newUser
+    .save()
+    .then(item => console.log(item))
+    .catch(err => console.log(err));
+
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
