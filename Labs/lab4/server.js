@@ -6,12 +6,17 @@ const User = require('./models/User');
 const cookieParser = require('cookie-parser');
 const hbs = require('express-handlebars');
 const path = require('path');
+const socketio = require('socket.io');
+const http = require('http');
+
 
 // import handlers
 const homeHandler = require('./controllers/home.js');
 const roomHandler = require('./controllers/room.js');
 
 const app = express();
+const Server = http.createServer(app);
+const io = socketio(Server);
 const port = 8080;
 const db = config.get('mongoURI');
 
@@ -44,6 +49,14 @@ app.set('view engine', 'hbs');
 // set up stylesheets route
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Run when a client connects
+io.on('connection', socket => {
+    console.log("New WS Connection...");
+
+    socket.emit('message', 'Welcome to the Chat App');
+
+})
+
 
 // TODO: Add server side code
 
@@ -56,4 +69,4 @@ app.post('/roomName', (req, res) => {
 });
 
 // NOTE: This is the sample server.js code we provided, feel free to change the structures
-app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
+Server.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
