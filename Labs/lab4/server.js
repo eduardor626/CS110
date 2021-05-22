@@ -1,10 +1,14 @@
 // import dependencies
 const express = require('express');
-const mongoose = require('mongoose');
-const config = require('config');
-const User = require('./models/User');
 const cookieParser = require('cookie-parser');
 const hbs = require('express-handlebars');
+
+//For connecting to the mongoDB database
+const mongoose = require('mongoose');
+const config = require('config');
+const Room = require('./models/Rooms');
+
+
 const path = require('path');
 const socketio = require('socket.io');
 const http = require('http');
@@ -18,21 +22,13 @@ const app = express();
 const Server = http.createServer(app);
 const io = socketio(Server);
 const port = 8080;
+//connecting to DB
 const db = config.get('mongoURI');
 
 mongoose
     .connect(db, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false, useUnifiedTopology: true})
-    .then(() => console.log('MongodDB connected...'))
+    .then(() => console.log('MongoDB connected..'))
     .catch(err => console.log(err));
-
-const newUser = new User({
-    name: 'UCR student 1',
-})
-newUser
-    .save()
-    .then(item => console.log(item))
-    .catch(err => console.log(err));
-
 
 
 app.use(express.json());
@@ -72,14 +68,34 @@ io.on('connection', socket => {
 
 
 // TODO: Add server side code
+// dummy way to see all the rooms and do things with it or display on front end
+app.get('/getRooms', function(req, res) {
+    Room.find().lean().then(items => {
+        res.json(items);
+    });
+});
 
 // Create controller handlers to handle requests at each endpoint
 app.get('/', homeHandler.getHome);
 app.get('/:roomName', roomHandler.getRoom);
 
+// respond to /roomName
 app.post('/roomName', (req, res) => {
-    res.redirect(req.body.createroom)
+    // res.redirect() function redirects to the URL derived from the specified path,
+    console.log(req.body.createroom + "<---");
+
+    if (!req.body.createroom) {
+        console.log("its empty");
+        res.redirect(req.body.room);
+    } else {
+        const newRoom = new Room({
+            name: req.body.createroom
+        })
+        newRoom.save().then(console.log('room added'))
+        res.redirect(newRoom.name);
+    }
 });
+
 
 // NOTE: This is the sample server.js code we provided, feel free to change the structures
 Server.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
