@@ -25,8 +25,12 @@
                 <div class="form-control">
                     <label for="room">Existing Rooms</label>
                     <select name="room" id="room">
-                        <option >Existing Chatroom:A</option>
-                        <option>Existing Chatroom:B</option>
+                        <option >Global Chat</option>
+                        {{#if isAvailable}}
+                            {{#each rooms}}
+                            <option>{{this.name}}</option>
+                            {{/each}}
+                        {{/if}}
                     </select>
                 </div>
                 <button type="submit" class="btn">Join Chat</button>
