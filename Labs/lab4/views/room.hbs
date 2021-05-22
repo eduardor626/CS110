@@ -1,14 +1,13 @@
-<!-- <h1> Room </h1>
+<h1> Room </h1>
 <p>This is a demo of chatroom page</p>
 <p>
     The room you are visiting is {{ roomName }}
 </p>
 <p>To generate a new room, here is the room id: {{ newRoomId }}</p>
-<script src="/socket.io/socket.io.js"></script>
-<script src="main.js"></script>
 
--->
 
+
+<!-- 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,11 +49,46 @@
       </form>
     </div>
   </div>
-  <script
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="room.js"></script>
+</body>
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Group Chat on Node.js</title>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script
       src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
       integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
       crossorigin="anonymous"
-  ></script>
-  <script src="/socket.io/socket.io.js"></script>   <!-- This can be used for lab4 -->
-  <script src="/room.js"></script>
-</body>
+    ></script>
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form action="/" method="POST" id="chatForm">
+      <input id="txt" autocomplete="off" autofocus="on" placeholder="type your message here..." /><button>Send</button>
+    </form>
+    
+    <script>
+        var socket = io();
+        // submit text message without reload/refresh the page
+        $('form').submit(function(e){
+            e.preventDefault(); // prevents page reloading
+            var msg = document.getElementById('txt').value;
+            socket.emit('chatMessage', msg);
+            $('#txt').val('');
+            return false;
+        });
+      socket.on('message', (msg) => {
+        console.log(msg);
+        var chatMessage = document.createElement("li");
+        chatMessage.textContent = msg; 
+        var messageBox = document.getElementById("messages");
+        messageBox.append(chatMessage);
+        window.scrollTo(0, document.body.scrollHeight);
+      });
+    </script>
+  </body>
+</html>

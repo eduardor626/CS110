@@ -6,7 +6,6 @@ const roomGenerator = require('../util/roomIdGenerator.js');
 function getRoom(request, response) {
     console.log("room got a hit");
     response.render('room', { title: 'chatroom', roomName: request.params.roomName, newRoomId: roomGenerator.roomIdGenerator() });
-    
 }
 
 module.exports = {
