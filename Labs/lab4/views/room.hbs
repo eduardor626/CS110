@@ -1,6 +1,12 @@
-<h1> Room </h1>
-<p>This is a demo of chatroom page</p>
-<p>
-    The room you are visiting is {{ roomName }}
-</p>
+<h1> Room: {{roomName}} </h1>
 <p>To generate a new room, here is the room id: {{ newRoomId }}</p>
+
+<div class="chat-container">
+    <textarea class="alltext" id="alltext">
+
+    </textarea>
+
+    <form action="/postMessage" method="POST" id="chatForm" class="chatForm">
+      <input id="txt" autocomplete="off" autofocus="on" placeholder="type your message here..." /><button>Send</button>
+    </form>
+</div>

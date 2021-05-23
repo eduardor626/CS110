@@ -99,3 +99,12 @@ join page
     margin-top: 20px;
     width: 100%;
 }
+
+.alltext {
+    width: 500px;
+}
+
+.chat-container {
+    border: solid 1px green;
+    width: auto;
+}

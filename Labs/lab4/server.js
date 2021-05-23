@@ -57,23 +57,24 @@ app.get('/:roomName', roomHandler.getRoom);
 
 
 // respond to /roomName
-app.post('/roomName', (req, res) => {
+app.post('/create', (req, res) => {
     // res.redirect() function redirects to the URL derived from the specified path,
-    console.log(req.body.createroom + "<---");
-
     if (!req.body.createroom) {
-        console.log("its empty");
         res.redirect(req.body.room);
     } else {
         const newRoom = new Room({
             name: req.body.createroom
-        })
+        });
+        //save to our data base
         newRoom.save().then(console.log('room added'))
         res.redirect(newRoom.name);
     }
 });
 
+// respond to /roomName
+app.post('/postMessage', (req, res) => {
+    console.log("user has posted message");
 
-
+});
 // NOTE: This is the sample server.js code we provided, feel free to change the structures
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
