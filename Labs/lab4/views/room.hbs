@@ -1,12 +1,60 @@
-<h1> Room: {{roomName}} </h1>
-<p>To generate a new room, here is the room id: {{ newRoomId }}</p>
+<h1 id={{roomName}} > Room: {{roomName}} </h1>
+<p id={{user}} >{{#if user}}
+  Current user: {{ user }}
+{{/if}}</p>
+{{!-- <p>To generate a new room, here is the room id: {{ newRoomId }}</p> --}}
+
 
 <div class="chat-container">
-    <textarea class="alltext" id="alltext">
+    <div class="chat-messages">
+      {{#if isAvailable}}
+        <ul id="messageList" class="messageList">
+            {{#each messages}}
+            <div class="chatMessage">
+              <span class="user-name">{{this.username}}
+                  <span class="date-time">{{this.created_at}}</span>
+              </span>
+              
+              <p>{{this.text}}</p> 
+            </div>
+            {{/each}} 
+        </ul>
+      {{/if}}
 
-    </textarea>
+    </div>
 
-    <form action="/postMessage" method="POST" id="chatForm" class="chatForm">
-      <input id="txt" autocomplete="off" autofocus="on" placeholder="type your message here..." /><button>Send</button>
+    <form action="http://localhost:8080/postMessage" method="POST" id="chatForm" class="chatForm">
+      <input id="msg" name="msg" type="text" autocomplete="off" autofocus="on" placeholder="Enter Message.." required/>
+      <input type="hidden" name="chatroom_name" value={{ roomName }} />
+      <input type="hidden" name="user_name" value={{ user }} />
+
+      <button>Send</button>
     </form>
 </div>
+
+<script>
+    console.log('in here');
+    intervalID = window.setInterval(function(){
+    fetch(`http://localhost:8080/getMessages`)
+    .then(function (items) {
+            items.json()
+            .then((jsonResponse) => {
+                console.log(jsonResponse)
+                /*
+                created_at: "2021-05-25T21:07:18.000Z"
+                roomName: "strong"
+                text: "this is what i do baby boy"
+                username: "randomname"
+                __v: 0
+                _id: "60ad67067a95f53a87111aa3"
+                */
+                let messageList = document.getElementsByClassName('chatMessage');
+                console.log(messageList[0]); 
+
+
+            })
+            .catch((err) => { console.log(err) })
+            })
+    .catch((err) => { console.log(err) })
+    }, 3000);
+</script>
