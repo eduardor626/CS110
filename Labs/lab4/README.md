@@ -10,7 +10,8 @@ roomName/ ---> user can only see messages in that chat
 
 ## Steps to run the server
 1. First run npm install npm
-2. Then run npm install nodemon express cookie
+2. Then run npm install nodemon express cookie cookie-parser -g
+3. Run npm install to install all dependencies
 4. To start, npm run start
 
 ## Ethics Questions
