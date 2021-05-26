@@ -39,12 +39,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 // set up stylesheets route
-app.use(express.static(path.join(__dirname, 'public')));
-
-
-
-
-
+app.use(express.static(__dirname + '/public'));
 
 app.post('/postMessage', function(req, res) {
     //write to database the message

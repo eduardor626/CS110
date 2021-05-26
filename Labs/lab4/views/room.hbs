@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="css/style.css">
 <h1 id={{roomName}} > Room: {{roomName}} </h1>
 <p id={{user}} >{{#if user}}
   Current user: {{ user }}
@@ -10,12 +11,11 @@
       {{#if isAvailable}}
         <ul id="messageList" class="messageList">
             {{#each messages}}
-            <div class="chatMessage">
+            <div id={{this._id}} >
               <span class="user-name">{{this.username}}
                   <span class="date-time">{{this.created_at}}</span>
               </span>
-              
-              <p>{{this.text}}</p> 
+              <p class="msg-text">{{this.text}}</p> 
             </div>
             {{/each}} 
         </ul>
@@ -34,6 +34,7 @@
 
 <script>
     console.log('in here');
+    let room_name = document.getElementsByTagName('h1')[0].id;
     intervalID = window.setInterval(function(){
     fetch(`http://localhost:8080/getMessages`)
     .then(function (items) {
@@ -48,9 +49,40 @@
                 __v: 0
                 _id: "60ad67067a95f53a87111aa3"
                 */
-                let messageList = document.getElementsByClassName('chatMessage');
-                console.log(messageList[0]); 
+                let messageList = document.getElementsByClassName('messageList');
+                var messageContainer = document.getElementById('messageList');
+                //console.log(messageList);
+                let messageListChildren = messageList[0].children;
+                //console.log(messageListChildren);
+                let messageSet = {}
+                for(let i = 0 ; i < messageListChildren.length; ++i){
+                  messageSet[messageListChildren[i].id] = true;
+                }
+                console.log(messageSet);
 
+                for(let i = 0; i < jsonResponse.length; ++i){
+                  if(!(jsonResponse[i]._id in messageSet) && jsonResponse[i].roomName == room_name){
+                    let chatDiv = document.createElement('div');
+                    let span1 = document.createElement('span');
+                    let span2 = document.createElement('span');
+                    let p = document.createElement('p');
+
+                    span1.classList.add("user-name");
+                    span2.classList.add("date-time");
+                    p.classList.add("msg-text");
+
+                    chatDiv.id = jsonResponse[i]._id;
+                    span1.innerHTML = jsonResponse[i].username;
+                    span2.innerHTML = jsonResponse[i].created_at;
+                    p.innerHTML = jsonResponse[i].text;
+
+                    span1.appendChild(span2);
+                    chatDiv.appendChild(span1);
+                    chatDiv.appendChild(p);
+
+                    messageContainer.appendChild(chatDiv);
+                  }
+                }
 
             })
             .catch((err) => { console.log(err) })
