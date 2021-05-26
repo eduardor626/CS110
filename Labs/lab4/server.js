@@ -67,7 +67,11 @@ app.post('/postMessage', function(req, res) {
             console.log(item);
         })
         .catch((e) => console.log(e));
-    res.redirect(req.body.chatroom_name + "/" + req.body.user_name);
+    if (req.body.user_name != "/") {
+        res.redirect(req.body.chatroom_name + "/" + req.body.user_name);
+    } else {
+        res.redirect(req.body.chatroom_name);
+    }
 });
 
 // respond to /roomName
