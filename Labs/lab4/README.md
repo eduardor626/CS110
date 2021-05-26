@@ -10,8 +10,8 @@ roomName/ ---> user can only see messages in that chat
 
 ## Steps to run the server
 1. First run npm install npm
-2. Then run npm install nodemon
-3. To start, npm run start
+2. Then run npm install nodemon express
+4. To start, npm run start
 
 ## Ethics Questions
 
