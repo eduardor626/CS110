@@ -8,7 +8,7 @@
 I have a ghost feature which allows the user to see all the messages from a specific chat with just the chat in the url. roomName/userName --> user can type message
 roomName/ ---> user can only see messages in that chat
 
-## Steps to run the code
+## Steps to run the server
 1. First run npm install npm
 2. Then run npm install nodemon
 3. To start, npm run start
@@ -22,11 +22,10 @@ roomName/ ---> user can only see messages in that chat
 ```
 1) A future moderation to implement in the chatroom is to be able to delete it once the users don't use it anymore. It is possible to delete the chatroom in the MongoDb Database but it would be easier if they can delete it on the home page.
 
-2) 
+2) Notification/Sound bar. We should implement these features because it would be useful for a person who is doing there studies on the computer and they can see from windows notification of the chat message. Also when the person does get notified they should be able to hear a sound with it as well.
 
 
 ```
-
 ## Known Bugs
 Every time a person sends a user a message in the chatroom, it used to say waiting for localhost infinitely. It would still send the message but it would just be reloading the page infinitely. 
 
