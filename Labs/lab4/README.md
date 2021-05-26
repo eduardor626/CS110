@@ -23,6 +23,4 @@ roomName/ ---> user can only see messages in that chat
 
 2) Notification/Sound bar. We should implement these features because it would be useful for a person who is doing there studies on the computer and they can see from windows notification of the chat message. Also when the person does get notified they should be able to hear a sound with it as well.
 
-## Known Bugs
-Every time a person sends a user a message in the chatroom, it used to say waiting for localhost infinitely. It would still send the message but it would just be reloading the page infinitely. 
 
