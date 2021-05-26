@@ -28,7 +28,7 @@
       <input type="hidden" name="chatroom_name" value={{ roomName }} />
       <input type="hidden" name="user_name" value={{ user }} />
 
-      <button>Send</button>
+      <button id="submitButton" onclick="submitForm()">Send</button>
     </form>
 </div>
 
@@ -89,4 +89,13 @@
             })
     .catch((err) => { console.log(err) })
     }, 3000);
+
+
+    function submitForm(){
+      var val = document.getElementById('chatForm');
+      val.submit();
+      val.reset();
+      return false;
+    }   
+
 </script>
